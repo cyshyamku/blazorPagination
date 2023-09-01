@@ -1,0 +1,156 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Client\\BlazorLearning.Client.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Client\\BlazorLearning.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Client\\BlazorLearning.Client.csproj",
+        "projectName": "BlazorLearning.Client",
+        "projectPath": "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Client\\BlazorLearning.Client.csproj",
+        "packagesPath": "C:\\Users\\shyamku\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\shyamku\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Shared\\BlazorLearning.Shared.csproj": {
+                "projectPath": "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Shared\\BlazorLearning.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "BlazorPagination": {
+              "target": "Package",
+              "version": "[0.2.16, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[6.0.20, 6.0.20]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Shared\\BlazorLearning.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Shared\\BlazorLearning.Shared.csproj",
+        "projectName": "BlazorLearning.Shared",
+        "projectPath": "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Shared\\BlazorLearning.Shared.csproj",
+        "packagesPath": "C:\\Users\\shyamku\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shyamku\\source\\repos\\BlazorLearningSerilog\\BlazorLearning\\Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\shyamku\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

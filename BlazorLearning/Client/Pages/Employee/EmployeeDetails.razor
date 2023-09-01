@@ -1,0 +1,150 @@
+﻿@page "/fetchemployeedetails"
+@using BlazorPagination
+@using BlazorLearning.Shared
+@using BlazorLearning.Shared.ViewModel;
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject ILogger<EmployeeDetails> LoggerLog;
+<h3>EmployeeDetails</h3>
+<p>Blazor CRUD operation</p>
+<div class="row">
+    <div class="col-md-6">
+        <a href='/employee/add' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Employee
+        </a>
+    </div>
+    <div class="input-group col">
+        <input type="text" class="form-control" placeholder="Search employee by name"
+        @bind="SearchString" @bind:event="oninput" @onkeyup="FilterUser" />
+        @if (SearchString.Length > 0)
+        {
+            <div class="input-group-append">
+                <button class="btn btn-danger" @onclick="ResetSearch">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+<br />
+@if (employeeList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th class="sort @sortclass("Name")" @onclick="@( () => Sort("Name"))">Name</th>
+                <th>Address</th>
+                <th>E-mail</th>
+                <th>Cell No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in employeeList.Results)
+            {
+                <tr>
+                    <td>@emp.Name</td>
+                    <td>@emp.Address</td>
+                    <td>@emp.EmailId</td>
+                    <td>@emp.MobileNumber</td>
+                    <td>
+                        <a href='employee/edit/@emp.Id' class="btn btn-outline-dark" role="button">
+                            Edit
+                        </a>
+                        <a href='/employee/delete/@emp.Id' class="btn btn-outline-danger" role="button">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+            @*<Pager Result=@Books PageChanged=@PagerPageChanged />*@
+        </tbody>
+
+    </table>
+    <BlazorPager CurrentPage="@employeeList.CurrentPage"
+                 PageCount="@employeeList.PageCount"
+                 VisiblePages="3"
+                 ShowFirstLast="true"
+                 ShowPageNumbers="true"
+                 FirstText="&laquo;"
+                 LastText="&raquo;"
+                 NextText="&rsaquo;"
+                 PreviousText="&lsaquo;"
+                 OnPageChanged="(async e => { _page = e; await GetEmployees(_page, employeeList.PageSize, _sort, _direction);})">
+    </BlazorPager>
+}
+@code {
+    protected GridParameterViewModel employeeList = new();
+    protected List<EmployeeViewModel> searchEmployeeData = new();
+    protected EmployeeViewModel employee = new();
+    protected string SearchString { get; set; } = string.Empty;
+    private PagedResult<List<EmployeeViewModel>> _data;
+    private int _page = 1;
+    private string _sort = "Name";
+    private string _direction = "desc";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetEmployees(_page, employeeList.PageSize, _sort, _direction);
+       // await GetData();
+    }
+    protected async Task GetEmployees(int page, int pageSize, string sortColumn, string sortDirection)
+    {
+        LoggerLog.LogDebug("GetEmployees method Called");
+        employeeList = await Http.GetFromJsonAsync<GridParameterViewModel>($"api/employee/fetchEmployees/{page}/{pageSize}/{sortColumn}/{sortDirection}");
+        searchEmployeeData = employeeList.Results;
+        StateHasChanged();
+        LoggerLog.LogInformation($"{employeeList.Results.Count} items are loaded");
+        LoggerLog.LogDebug("GetEmployees call ended");
+    }
+    protected void FilterUser()
+    {
+        if (!string.IsNullOrEmpty(SearchString))
+        {
+            employeeList.Results = searchEmployeeData
+                .Where(x => x.Name?.IndexOf(SearchString, StringComparison.OrdinalIgnoreCase) != -1)
+                .ToList();
+        }
+        else
+        {
+            employeeList.Results = searchEmployeeData;
+        }
+    }
+    protected void DeleteConfirm(int empId)
+    {
+        employee = employeeList.Results.FirstOrDefault(x => x.Id == empId);
+    }
+    public void ResetSearch()
+    {
+        SearchString = string.Empty;
+        employeeList.Results = searchEmployeeData;
+    }
+
+    private async Task GetData()
+    {
+        // _data = await ForecastService.GetForecastAsync(DateTime.Now, _page, 3, sortColumn: _sort, sortDirection: _direction);
+       // _data = employeeList;
+        StateHasChanged();
+    }
+    private async void Sort(string column)
+    {
+        _direction = _sort == column ? _direction == "asc" ? "desc" : "asc" : "asc";
+        _sort = column;
+        await GetData();
+    }
+
+    // sets css class to display up and down arrows
+    private string sortclass(string x)
+    {
+        return x == _sort ? _direction == "desc" ? "desc" : "asc" : "";
+    }
+    
+}
+
+
